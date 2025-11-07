@@ -1,0 +1,63 @@
+#ifndef TREE
+#define TREE
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <assert.h>
+#include <time.h>
+
+#define TREE_DUMP(tree)\
+        TreeDump(tree,__FILE__, __LINE__)
+
+typedef int used_type;
+
+const used_type POIZON = 765418;
+const ssize_t SIZE_OF_NAME = 200;
+
+struct NODE_T
+{
+    used_type data;
+    struct NODE_T *left;
+    struct NODE_T *right;
+    struct NODE_T *parent;
+};
+
+typedef struct NODE_T node_t;
+
+typedef struct
+{
+    ssize_t num_of_el;
+    node_t *root;
+} binary_tree;
+
+enum Tree_Errors
+{
+    NO_ERROR,
+    NULL_POINTER_ON_TREE,
+    TREE_IS_EMPTY,
+    ELEMENT_NOT_FOUND,
+    ERROR_DURING_THE_CREATION_OF_THE_TREE,
+    NEGATIVE_NUM_OF_ELEMENTS,
+    NULL_POINTER_ON_ROOT,
+    ROOT_HAVE_PARENT    
+};
+
+Tree_Errors TreeInit(binary_tree *tree);
+Tree_Errors TreeVerify(binary_tree *tree);
+
+void TreeDump(binary_tree *tree, const char *file, int line);
+void dump_to_console(const binary_tree *tree, const char *file, int line);
+void show_tree(node_t *node);
+
+bool open_file_success(FILE *fp, const char * file_name);
+bool close_files_success(FILE *fp, const char * file_name);
+
+bool print_error(Tree_Errors err);
+
+Tree_Errors tree_insert(binary_tree *tree, used_type value);
+Tree_Errors node_delete(binary_tree *tree, node_t *node, node_t *ptr);
+Tree_Errors NodeInit(binary_tree *tree, node_t **node, node_t *parent, used_type value);
+Tree_Errors NodeDestroy(binary_tree *tree, used_type value);
+
+#endif
