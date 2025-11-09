@@ -21,6 +21,7 @@ Tree_Errors tree_insert(binary_tree *tree, used_type value)
                     printf("ptr.data = %d, ptr->left = NULL\n", ptr->data);
                     NodeInit(tree, &ptr->left, ptr, value);
                     printf("ptr->left->data = %d\n", ptr->left->data);
+                    tree->num_of_el++;
 
                     break;
                 }
@@ -37,6 +38,7 @@ Tree_Errors tree_insert(binary_tree *tree, used_type value)
                     printf("ptr.data = %d, ptr->left = NULL\n", ptr->data);
                     NodeInit(tree, &ptr->right, ptr, value);
                     printf("ptr->right->data = %d\n", ptr->right->data);
+                    tree->num_of_el++;
 
                     break;
                 }
@@ -68,7 +70,7 @@ Tree_Errors NodeDestroy(binary_tree *tree, used_type value)
     if (value == ptr->data)
     {
         node_delete(tree, ptr, ptr);
-        TreeInit(tree);
+        TreeInit(tree, tree->file_name);
     }
     
     while (true)
@@ -161,6 +163,7 @@ Tree_Errors node_delete(binary_tree *tree, node_t *node, node_t *ptr)
 
     printf("%d\n", node->data);
     free(node);
+    tree->num_of_el--;
     printf("Free\n");
     node = NULL;
 

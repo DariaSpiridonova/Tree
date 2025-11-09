@@ -4,7 +4,7 @@ int main()
 {
     binary_tree tree;
 
-    TreeInit(&tree);
+    TreeInit(&tree, "logfile_for_tree1.htm");
     tree_insert(&tree, 10);
     tree_insert(&tree, 5);
     tree_insert(&tree, 20);
