@@ -56,7 +56,10 @@ void dump_to_console(const binary_tree *tree, const char *file, int line, ssize_
 void dump_to_logfile(const binary_tree *tree, const char *logfile_name, const char *gvfile_name, ssize_t *rank);
 void dump(FILE *fp, const binary_tree *tree, ssize_t *rank);
 void show_tree(FILE *fp, node_t *node, ssize_t *rank, ssize_t *cur_rank);
-//void create_graph(const binary_tree *tree, const char *gvfile_name, ssize_t rank);
+void print_edges(FILE *fp, node_t *node);
+void link_edges(FILE *fp, node_t *node);
+
+void create_graph(const binary_tree *tree, const char *gvfile_name);
 
 bool open_file_success(FILE *fp, const char * file_name);
 bool close_files_success(FILE *fp, const char * file_name);
